@@ -1,26 +1,24 @@
-
 pipeline {
     agent any
 
     stages {
         stage('Build') {
             steps {
-                sh 'docker compose build'
+                bat 'docker compose build'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker compose down || true'
-                sh 'docker compose up -d'
+                bat 'docker compose down'
+                bat 'docker compose up -d'
             }
         }
 
         stage('Verification') {
             steps {
-                sh 'docker compose ps'
+                bat 'docker compose ps'
             }
         }
     }
 }
-
